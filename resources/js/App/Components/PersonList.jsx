@@ -15,7 +15,9 @@ export default class PersonList extends React.Component {
         fetch('/api/person', {
             headers: {
                 'Accept':       'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.props.token
+
             }
         })
         .then(response => response.json())
@@ -31,11 +33,16 @@ export default class PersonList extends React.Component {
             <>
                 <h1>Person list</h1>
                 
-                {
-                    this.state.people.map(person => {
-                        <div className="person">{ person.name }</div>
-                    })
-                }
+                <div className="people_list">
+                    {
+                        this.state.people.map(( person, key ) => (
+                            <div key={key}>
+                                <img src={person.image.path} alt="" className="person_photo" />
+                                <p>{person.name}</p>
+                            </div>
+                        ))
+                    }
+                </div>
             </>
         )
     }

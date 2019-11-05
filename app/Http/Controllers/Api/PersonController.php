@@ -11,8 +11,9 @@ class PersonController extends Controller
     public function index()
     {
         return Person::query()
+            ->with('image')
             ->orderBy('name', 'asc')
-            ->limit(20)
+            ->limit(15)
             ->get();
     }
 }
