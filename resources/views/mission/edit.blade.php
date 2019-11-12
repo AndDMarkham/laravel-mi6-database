@@ -24,13 +24,26 @@
             ]) !!}
         </div><br/>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <input type="file" value="image">
-        </div><br/>
+        </div><br/> --}}
 
         @if ($mission->image)
-             <img src="{{ asset($mission->image->path) }}" alt="" />
+             <img src="{{ asset($mission->image->path) }}" alt="" class="uploaded_photo"/>
         @endif
+
+        <div id="image_dropzone" class="dropzone"></div>
+
+        <script src="{{ asset('js/vendor/dropzone.js') }}"></script>
+        <script>
+            Dropzone.autoDiscover = false;
+            let DropZone = new Dropzone('#image_dropzone', {
+                url: '/mission/{{ $mission->id }}/file_upload',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+        </script>
 
         <div class="form-group">
             <input type="submit" value="save">

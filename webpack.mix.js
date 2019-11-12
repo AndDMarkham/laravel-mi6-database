@@ -26,6 +26,9 @@ if (!mix.inProduction()) {
  
 mix.react('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
+    .copy('node_modules/dropzone/dist/dropzone.js', 'public/js/vendor/dropzone.js')
+    .copy('node_modules/dropzone/dist/dropzone.css', 'public/css/vendor/dropzone.css')
+
  
     .browserSync({
         host: 'localhost',

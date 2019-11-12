@@ -153,7 +153,7 @@ class MissionController extends Controller
                 $mission->save();
 
                 // return success response
-                return response()->son('success', 200);
+                return response()->json('success', 200);
             }
         }
 
